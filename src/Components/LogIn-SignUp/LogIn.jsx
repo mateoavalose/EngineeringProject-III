@@ -17,8 +17,7 @@ export const LogIn = () => {
                     <h3>Home</h3>
                 </div>
             ) : (
-                <div>
-                    <div className="login">
+                <div className="login">
                     <h3>Login</h3>
                     <form>
                         <input type="text" placeholder="Username" />
@@ -26,7 +25,6 @@ export const LogIn = () => {
                         <button type="button" onClick={handleLogin}>Login</button>
                     </form>
                     <p>New member? <a href="/signup">Sign up here!</a></p>
-                    </div>
                 </div>
             )}
         </div>

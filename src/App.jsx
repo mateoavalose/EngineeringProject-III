@@ -1,11 +1,19 @@
 import { useState } from 'react'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { LogIn } from './Components/LogIn-SignUp/LogIn'
+import { SignUp } from './Components/LogIn-SignUp/SignUp'
 
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<LogIn />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 

@@ -5,38 +5,125 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/*--------------------------------------------------------------------------------*/
+/* Login CSS */
+.access {
+  display: grid;
+  justify-content: center;
+  margin-bottom: 50px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.access h2 {
+  color: #FF69B4;
+  margin-bottom: 30px;
+  align-self: center;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.login {
+  background-color: #333;
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.login input {
+  width:80%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+.login button {
+  width: 50%;
+  padding: 10px;
+  background-color: #FF69B4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login button:hover {
+  background-color: #ff85c1;
+}
+a {
+  color: #FF69B4;
+}
+a:hover {
+  text-decoration: underline;
+}
+.loggedIn {
+  display: grid;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.loggedIn h2 {
+  color: #FF69B4;
+  margin-bottom: 30px;
+  align-self: center;
+}
+.loggedIn p {
+  font-size: 16px;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+.loggedIn ul {
+  list-style: circle;
+  padding-left: 20px;
+}
+.loggedIn li {
+  font-size: 16px;
+  color: #ddd;
+  margin-bottom: 10px;
+}
+.loggedIn button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FF69B4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .tier-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/*--------------------------------------------------------------------------------*/
+/* SignUp CSS */
+.signup-form {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
 }
-
-.card {
-  padding: 2em;
+.signup-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  color: #FFD700;
 }
-
-.read-the-docs {
-  color: #888;
+.signup-form input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: white;
+}
+.signup-form input::placeholder {
+  color: #999;
+}
+.signup-form button {
+  width: 50%;
+  padding: 10px;
+  background-color: #FF69B4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.signup-form button:hover {
+  background-color: #ff85c1;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { Schedule } from '../../assets/ScheduleManagement/Schedule';
 
 export const LogIn = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,7 +15,7 @@ export const LogIn = () => {
             {isLoggedIn ? (
                 <div className="loggedIn">
                     <button onClick={handleLogout}>Logout</button>
-                    <h3>Home</h3>
+                    <Schedule />
                 </div>
             ) : (
                 <div className="login">

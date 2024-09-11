@@ -55,11 +55,21 @@ export const Schedule = () => {
   };
 
   // Function to handle deleting text from a cell
+  const [confirmPopup, setConfirmPopup] = useState({ isOpen: false, rowIdx: null, colIdx: null, entry: null });
   const handleDeleteCell = (rowIdx, colIdx) => {
-    const updatedSchedule = schedule.map((row, rIdx) =>
-      row.map((cell, cIdx) => rIdx === rowIdx && cIdx === colIdx ? null : cell)
-    );
-    setSchedule(updatedSchedule);
+    const entry = schedule[rowIdx][colIdx]; // Get the entry for this cell
+    setConfirmPopup({ isOpen: true, rowIdx, colIdx, entry });
+  };
+  const confirmDelete = () => {
+    const { rowIdx, colIdx } = confirmPopup;
+    const newSchedule = [...schedule];
+    newSchedule[rowIdx][colIdx] = null; // Clear the entry from the schedule
+    setSchedule(newSchedule);
+    setConfirmPopup({ isOpen: false, rowIdx: null, colIdx: null, entry: null });
+  };
+  
+  const cancelDelete = () => {
+    setConfirmPopup({ isOpen: false, rowIdx: null, colIdx: null, entry: null });
   };
 
   // Function to handle viewing information
@@ -193,6 +203,19 @@ export const Schedule = () => {
             </div>
             <div className="mb-4 text-black">
               <strong>Comentarios:</strong> {viewedEntry.comments}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Confirm Delete Popup */}
+      {confirmPopup.isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-[#004E59] text-white p-6 rounded-lg">
+            <h2 className="text-xl mb-4">¿Está seguro de que quiere eliminar la reserva de <i>{confirmPopup.entry?.name}</i>?</h2>
+            <div className="flex justify-between">
+              <button className="px-4 py-2 rounded" onClick={confirmDelete}>Aceptar</button>
+              <button className="px-4 py-2 rounded" onClick={cancelDelete}>Rechazar</button>
             </div>
           </div>
         </div>

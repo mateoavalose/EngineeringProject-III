@@ -55,17 +55,36 @@ export const Schedule = () => {
   };
 
   // Function to handle deleting text from a cell
-  const handleDeleteText = (rowIdx, colIdx) => {
-    const updatedSchedule = schedule.map((row, i) =>
-      row.map((cell, j) => (i === rowIdx && j === colIdx ? '' : cell))
+  const handleDeleteCell = (rowIdx, colIdx) => {
+    const updatedSchedule = schedule.map((row, rIdx) =>
+      row.map((cell, cIdx) => rIdx === rowIdx && cIdx === colIdx ? null : cell)
     );
     setSchedule(updatedSchedule);
   };
 
-  // Function to handle viewing information (demo )
-  const handleViewInfo = (text) => {
-    alert(`Information: ${text}`);
+  // Function to handle viewing information
+  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
+  const [viewedEntry, setViewedEntry] = useState(null);
+
+  const handleViewInfo = (rowIdx, colIdx) => {
+    console.log("Schedule:", schedule);
+    console.log("Row Index:", rowIdx, "Column Index:", colIdx);
+    
+    const entry = schedule[rowIdx]?.[colIdx];
+    if (entry) {
+      setViewedEntry(entry);
+      setIsInfoPopupOpen(true);
+    } else {
+      console.error("No entry found for this cell.");
+    }
   };
+
+  // Add a function to close the info popup
+  const handleCloseInfoPopup = () => {
+    setIsInfoPopupOpen(false);
+    setViewedEntry(null); // Reset the viewed entry
+  };
+  
 
   const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 
@@ -97,10 +116,10 @@ export const Schedule = () => {
                         <>
                           {/* Information button */}
                           <button className="bg-blue-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs"
-                            onClick={() => handleViewInfo(schedule[rowIdx][colIdx])}>i</button>
+                            onClick={() => handleViewInfo(rowIdx, colIdx)}>i</button>
                           {/* Delete button */}
                           <button className="bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs"
-                            onClick={() => handleDeleteText(rowIdx, colIdx)}>x</button>
+                            onClick={() => handleDeleteCell(rowIdx, colIdx)}>x</button>
                         </>
                       ) : (
                         /* Add text button */
@@ -154,8 +173,27 @@ export const Schedule = () => {
                   className="w-full p-2 bg-gray-200 rounded text-black"
                 />
               </div>
-              <button type="submit" className="w-full bg-green-500 text-white py-2 rounded">Añadir</button>
+              <button type="submit" className="w-full text-white py-2 rounded">Añadir</button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Information Popup */}
+      {isInfoPopupOpen && viewedEntry && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg relative">
+            <button onClick={handleCloseInfoPopup} className="absolute top-0 right-0 m-2 text-red-500">X</button>
+            <h2 className="text-xl font-bold mb-4">Información de la Reserva</h2>
+            <div className="mb-4 text-black">
+              <strong>Nombre:</strong> {viewedEntry.name}
+            </div>
+            <div className="mb-4 text-black">
+              <strong>Correo Institucional:</strong> {viewedEntry.email}
+            </div>
+            <div className="mb-4 text-black">
+              <strong>Comentarios:</strong> {viewedEntry.comments}
+            </div>
           </div>
         </div>
       )}

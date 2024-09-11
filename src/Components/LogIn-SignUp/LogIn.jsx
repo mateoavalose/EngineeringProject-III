@@ -14,7 +14,6 @@ export const LogIn = () => {
         <div className="access">
             {isLoggedIn ? (
                 <div className="loggedIn">
-                    <h2>Gestión de Usuarios</h2>
                     <Schedule />
                     <button onClick={handleLogout}>Logout</button>
                 </div>

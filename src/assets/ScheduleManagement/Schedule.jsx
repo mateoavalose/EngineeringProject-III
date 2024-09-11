@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const Schedule = () => {
   const hours = Array.from({ length: 14 }, (_, i) => i + 6);
   
   // State to manage the content of each cell
-  const [schedule, setSchedule] = useState(
-    Array(14).fill(Array(5).fill(''))
-  );
+  const [schedule, setSchedule] = useState(Array(14).fill(Array(5).fill('')));
+
+  // Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+  const [currentDay, setCurrentDay] = useState(null);
+
+  useEffect(() => {
+    const today = new Date().getDay();
+    // Adjust to match our table where Monday is the first day
+    setCurrentDay(today === 0 ? 6 : today - 1); // Make Sunday 6 for consistency, as we're starting with Monday
+  }, []);
 
   // Function to handle adding text to a cell
   const handleAddText = (rowIdx, colIdx) => {
     const newText = prompt('Enter text for this cell:');
     if (newText) {
-      const updatedSchedule = schedule.map((row, i) => 
+      const updatedSchedule = schedule.map((row, i) =>
         row.map((cell, j) => (i === rowIdx && j === colIdx ? newText : cell))
       );
       setSchedule(updatedSchedule);
@@ -21,16 +28,18 @@ export const Schedule = () => {
 
   // Function to handle deleting text from a cell
   const handleDeleteText = (rowIdx, colIdx) => {
-    const updatedSchedule = schedule.map((row, i) => 
+    const updatedSchedule = schedule.map((row, i) =>
       row.map((cell, j) => (i === rowIdx && j === colIdx ? '' : cell))
     );
     setSchedule(updatedSchedule);
   };
 
-  // Function to handle viewing information (demo)
+  // Function to handle viewing information (demo )
   const handleViewInfo = (text) => {
     alert(`Information: ${text}`);
   };
+
+  const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 
   return (
     <div className="flex flex-col justify-center mb-12 w-[100vw]">
@@ -39,11 +48,17 @@ export const Schedule = () => {
         <thead>
           <tr>
             <th className="p-2 max-w-[100px]"><div className="min-h-[50px]"></div></th>
-            <th className="p-2 max-w-[100px]"><div className="min-h-[50px] text-black flex items-end justify-center">Lunes</div></th>
-            <th className="p-2 max-w-[100px]"><div className="min-h-[50px] text-black flex items-end justify-center">Martes</div></th>
-            <th className="p-2 max-w-[100px]"><div className="min-h-[50px] text-black flex items-end justify-center">Miércoles</div></th>
-            <th className="p-2 max-w-[100px]"><div className="min-h-[50px] text-black flex items-end justify-center">Jueves</div></th>
-            <th className="p-2 max-w-[100px]"><div className="min-h-[50px] text-black flex items-end justify-center">Viernes</div></th>
+            {daysOfWeek.map((day, idx) => (
+              <th key={idx} className="p-2 max-w-[100px]">
+                <div
+                  className={`min-h-[50px] text-black flex items-end justify-center ${
+                    currentDay === idx ? 'font-bold text-blue-500' : ''
+                  }`}
+                >
+                  {day}
+                </div>
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -67,7 +82,8 @@ export const Schedule = () => {
                       ) : (
                         /* Add text button */
                         <button className="bg-[#004E59] text-white rounded-full w-4 h-4 flex items-center justify-center text-xs"
-                          onClick={() => handleAddText(rowIdx, colIdx)}>+</button>
+                          onClick={() => handleAddText(rowIdx, colIdx)}
+                        >+</button>
                       )}
                     </div>
                   </div>

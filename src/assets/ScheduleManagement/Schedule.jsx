@@ -138,7 +138,7 @@ export const Schedule = () => {
       {/* Popup form */}
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg relative">
+          <div className="bg-white p-8 rounded-lg shadow-lg relative min-w-[35vw] min-h-[60vh]">
             <button onClick={handleClosePopup} className="absolute top-0 right-0 m-2">X</button>
             <h2 className="text-xl font-bold mb-4">Adicionar una Reserva</h2>
             <form onSubmit={handleSubmit}>
@@ -170,7 +170,7 @@ export const Schedule = () => {
                   name="comments"
                   value={formValues.comments}
                   onChange={handleInputChange}
-                  className="w-full p-2 bg-gray-200 rounded text-black"
+                  className="w-full p-2 bg-gray-200 rounded text-black min-h-[15vh]"
                 />
               </div>
               <button type="submit" className="w-full text-white py-2 rounded">Añadir</button>

@@ -58,12 +58,16 @@
 .loggedIn {
   display: grid;
   justify-content: center;
-  margin-bottom: 50px;
+  width: 100vw;
 }
 .loggedIn h2 {
   color: #004E59;
+  background-color: #03B4CE;
   margin-bottom: 30px;
+  min-height: 50px;
   align-self: center;
+  padding: 20px;
+
 }
 .loggedIn p {
   font-size: 16px;
@@ -80,8 +84,9 @@
   margin-bottom: 10px;
 }
 .loggedIn button {
-  width: 100%;
-  padding: 10px;
+  position: relative;
+  width: fit-content;
+  margin: 15px;
   background-color: #004E59;
   color: #03B4CE;
   border: none;
@@ -145,3 +150,12 @@
 
 /*--------------------------------------------------------------------------------*/
 /* Schedule CSS */
+.schedule {
+  display: grid;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 100vw;
+}
+.schedule-table {
+  width: 100vw;
+}

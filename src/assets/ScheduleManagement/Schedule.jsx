@@ -4,8 +4,8 @@ export const Schedule = () => {
     const hours = Array.from({ length: 14 }, (_, i) => i + 6);
 
   return (
-    <div>
-      <table>
+    <div className="schedule">
+      <table className="schedule-table">
         <thead>
           <tr>
             <th>Lunes</th>

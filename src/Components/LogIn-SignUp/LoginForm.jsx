@@ -11,7 +11,7 @@ const LoginForm = ({ onLogin }) => {
 
   return (
     <div className="login bg-gray-800 p-8 w-80 mx-auto rounded-lg shadow-lg">
-      <h3 className="text-2xl text-[#004E59] bg-[#03B4CE] py-2 mb-6 text-center">Login</h3>
+      <h3 className="text-2xl text-[#03B4CE] py-2 mb-6 text-center">Login</h3>
       <form onSubmit={handleSubmit} className="grid gap-4">
         <input
           type="text"

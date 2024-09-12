@@ -20,7 +20,7 @@ export const SignUp = () => {
   return (
     <div className="signUp w-[100vw] min-h-screen flex justify-center items-center bg-gray-900">
       <div className="signup-form bg-gray-800 p-8 rounded-lg shadow-lg w-96">
-        <h3 className="text-2xl text-[#03B4CE] mb-6 text-center">Sign Up for Exclusive Membership</h3>
+        <h3 className="text-2xl text-[#03B4CE] mb-6 text-center">Sign Up</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <label htmlFor="name" className="block text-[#03B4CE]">Name:</label>
           <input

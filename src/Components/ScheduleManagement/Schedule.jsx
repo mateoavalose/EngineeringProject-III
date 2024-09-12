@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const Schedule = () => {
+export const Schedule = ({ onLogout }) => {
   const hours = Array.from({ length: 14 }, (_, i) => i + 6);
 
     // State to manage the content of each cell
@@ -99,8 +99,8 @@ export const Schedule = () => {
   const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 
   return (
-    <div className="flex flex-col justify-center mb-12 w-[100vw]">
-      <h2 className="w-[100%] text-2xl font-bold text-[#004E59]">Gestión de Usuarios</h2>
+    <div className="loggedIn bg-white flex flex-col justify-center mb-12 w-[100vw] min-h-screen top-0">
+      <h2 className="text-3xl font-bold text-[#004E59] bg-[#03B4CE] py-4 mb-6 text-center min-h-[100px] align-text-bottom">Gestión de Usuarios</h2>
       <table className="table-auto border-collapse w-[95%]">
         <thead>
           <tr>
@@ -149,8 +149,8 @@ export const Schedule = () => {
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-lg relative min-w-[35vw] min-h-[60vh]">
-            <button onClick={handleClosePopup} className="absolute top-0 right-0 m-2">X</button>
-            <h2 className="text-xl font-bold mb-4">Adicionar una Reserva</h2>
+            <button onClick={handleClosePopup} className="absolute top-0 right-0 py-2 bg-[#004E59] text-[#03B4CE] rounded-md hover:bg-[#03B4CE] hover:text-[#004E59] transition-all">X</button>
+            <h2 className="text-xl font-bold text-[#004E59] bg-[#03B4CE] py-4 mb-4 text-center">Adicionar una Reserva</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-700">Nombre</label>
@@ -183,7 +183,7 @@ export const Schedule = () => {
                   className="w-full p-2 bg-gray-200 rounded text-black min-h-[15vh]"
                 />
               </div>
-              <button type="submit" className="w-full text-white py-2 rounded">Añadir</button>
+              <button type="submit" className="w-fit mx-auto py-2 bg-[#004E59] text-[#03B4CE] rounded-md hover:bg-[#03B4CE] hover:text-[#004E59] transition-all">Añadir</button>
             </form>
           </div>
         </div>
@@ -220,6 +220,8 @@ export const Schedule = () => {
           </div>
         </div>
       )}
+      <button className="py-2 px-4 bg-[#004E59] text-[#03B4CE] rounded-md hover:bg-[#03B4CE] hover:text-[#004E59] transition-all w-fit m-3.5" 
+        onClick={onLogout}>Logout</button>
     </div>
   );
 };

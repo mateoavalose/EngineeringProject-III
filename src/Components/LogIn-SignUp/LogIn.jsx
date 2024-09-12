@@ -1,33 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
-import { Schedule } from '../../assets/ScheduleManagement/Schedule';
+import { useNavigate } from 'react-router-dom';
+import LoginForm from './LoginForm';
 
-export const LogIn = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const handleLogin = () => {
-        setIsLoggedIn(true);
-    };
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-    };
-    return (
-        <div className="access">
-            {isLoggedIn ? (
-                <div className="loggedIn">
-                    <Schedule />
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
-            ) : (
-                <div className="login">
-                    <h3>Login</h3>
-                    <form>
-                        <input type="text" placeholder="Username" />
-                        <input type="password" placeholder="Password" />
-                        <button type="button" onClick={handleLogin}>Login</button>
-                    </form>
-                    <p>New member? <a href="/signup">Sign up here!</a></p>
-                </div>
-            )}
-        </div>
-    );
+export const LogIn = ({ onLogin, isLoggedIn }) => {
+  const navigate = useNavigate();
+
+  if (isLoggedIn) {
+    navigate('/schedule');
+  }
+
+  return (
+    <div className="access flex justify-center items-center h-screen w-[100vw] min-h-screen bg-gray-900">
+      <LoginForm onLogin={onLogin} />
+    </div>
+  );
 };

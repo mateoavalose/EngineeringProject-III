@@ -1,34 +1,28 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
+    // Your submit logic here
   };
 
   return (
-    <div className="signUp">
-      <h3>Sign Up for Exclusive Membership</h3>
-
-      <div className="signup-form">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
+    <div className="signUp w-[100vw] min-h-screen flex justify-center items-center bg-gray-900">
+      <div className="signup-form bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <h3 className="text-2xl text-[#03B4CE] mb-6 text-center">Sign Up for Exclusive Membership</h3>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <label htmlFor="name" className="block text-[#03B4CE]">Name:</label>
           <input
             type="text"
             id="name"
@@ -37,9 +31,10 @@ export const SignUp = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            className="w-full px-4 py-2 bg-gray-700 text-white rounded-md"
           />
 
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className="block text-[#03B4CE]">Email:</label>
           <input
             type="email"
             id="email"
@@ -48,9 +43,10 @@ export const SignUp = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            className="w-full px-4 py-2 bg-gray-700 text-white rounded-md"
           />
 
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password" className="block text-[#03B4CE]">Password:</label>
           <input
             type="password"
             id="password"
@@ -59,9 +55,10 @@ export const SignUp = () => {
             value={formData.password}
             onChange={handleChange}
             required
+            className="w-full px-4 py-2 bg-gray-700 text-white rounded-md"
           />
 
-          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <label htmlFor="confirmPassword" className="block text-[#03B4CE]">Confirm Password:</label>
           <input
             type="password"
             id="confirmPassword"
@@ -70,10 +67,19 @@ export const SignUp = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
             required
+            className="w-full px-4 py-2 bg-gray-700 text-white rounded-md"
           />
 
-          <button type="submit">Sign Up</button>
-          <p>Already a member? <a href="/">Log in here!</a></p>
+          <button
+            type="submit"
+            className="w-1/2 mx-auto py-2 bg-[#004E59] text-[#03B4CE] rounded-md hover:bg-[#03B4CE] hover:text-[#004E59] transition-all"
+          >
+            Sign Up
+          </button>
+
+          <p className="text-center text-[#03B4CE] mt-4">
+            Already a member? <a href="/" className="hover:underline">Log in here!</a>
+          </p>
         </form>
       </div>
     </div>
